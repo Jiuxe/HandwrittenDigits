@@ -39,21 +39,23 @@ def getDraw():
 
     return imageArray
 
-def drawAnalysis():
-    image = getDraw()
+def trainingModel():
     print("Comienza entrenamiento")
     main.trainingModel()
     print("Termina entrenamiento")
+
+def drawAnalysis():
+    image = getDraw()
     print(main.evaluateOneElement(image))
 
 window = Tk("HandWrittenDigits")
 window.config(height=500,width=500,bg="black")
 
 window.rowconfigure(1)
-window.columnconfigure(1)
+window.columnconfigure(2)
 
 canvas = Canvas(window, bg="black")
-canvas.grid(row=0,columnspan=2)
+canvas.grid(row=0,columnspan=3)
 
 canvas.bind('<Button-1>',line_xy)
 canvas.bind('<B1-Motion>',line)
@@ -61,7 +63,10 @@ canvas.bind('<B1-Motion>',line)
 clearButton = Button(window, command=clear, text="Limpiar", bg='red')
 clearButton.grid(row=1, column=0, sticky='ew')
 
-analysisButton = Button(window, command=drawAnalysis, text="Analizar", bg='green')
+analysisButton = Button(window, command=drawAnalysis, text="Analizar dibujo", bg='green')
 analysisButton.grid(row=1, column=1, sticky='ew')
+
+trainingButton = Button(window, command=trainingModel, text="Entrenar Modelo", bg='blue')
+trainingButton.grid(row=1, column=2, sticky='ew')
 
 window.mainloop()

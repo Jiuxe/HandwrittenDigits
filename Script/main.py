@@ -26,12 +26,16 @@ def trainingModel():
     model.evaluate(x_test_flattened, y_test)
 
 def evaluateOneElement(image):
-    plt.matshow(image)
-    plt.waitforbuttonpress()
+
+    # plt.matshow(image)
+    # plt.waitforbuttonpress()
+
     image = image / 255
-    print(image)
+
     image_flattened = image.reshape(1, 28 * 28)
     y_predict = model.predict(image_flattened)
+
+    print(y_predict)
 
     return np.argmax(y_predict[0])
 

@@ -1,6 +1,7 @@
 from tkinter import Canvas, Tk, Button, messagebox, filedialog, Scale, HORIZONTAL, ALL
 import PIL.ImageGrab as ImageGrab
 import numpy as np
+import main
 
 line_x = 0
 line_y = 0
@@ -38,6 +39,13 @@ def getDraw():
 
     return imageArray
 
+def drawAnalysis():
+    image = getDraw()
+    print("Comienza entrenamiento")
+    main.trainingModel()
+    print("Termina entrenamiento")
+    print(main.evaluateOneElement(image))
+
 window = Tk("HandWrittenDigits")
 window.config(height=500,width=500,bg="black")
 
@@ -53,7 +61,7 @@ canvas.bind('<B1-Motion>',line)
 clearButton = Button(window, command=clear, text="Limpiar", bg='red')
 clearButton.grid(row=1, column=0, sticky='ew')
 
-analysisButton = Button(window, command=getDraw, text="Analizar", bg='green')
+analysisButton = Button(window, command=drawAnalysis, text="Analizar", bg='green')
 analysisButton.grid(row=1, column=1, sticky='ew')
 
 window.mainloop()

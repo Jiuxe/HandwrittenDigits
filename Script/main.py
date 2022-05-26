@@ -27,12 +27,13 @@ def trainingModel():
 
 def evaluateOneElement(image):
 
-    # plt.matshow(image)
-    # plt.waitforbuttonpress()
-
     image = image / 255
 
     image_flattened = image.reshape(1, 28 * 28)
+
+    for i in range(len(image_flattened[0])):
+        if image_flattened[0][i] != 0 and image_flattened[0][i] < 0.7:
+            image_flattened[0][i] += 0.3
     y_predict = model.predict(image_flattened)
 
     print(y_predict)
@@ -40,6 +41,7 @@ def evaluateOneElement(image):
     return np.argmax(y_predict[0])
 
 
+print("modelo cargado")
 model = keras.Sequential([
     keras.layers.Dense(10, input_shape=(784,), activation='sigmoid')
 ])

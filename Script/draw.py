@@ -1,6 +1,7 @@
 from tkinter import Canvas, Tk, Button, messagebox, filedialog, Scale, HORIZONTAL, ALL
 import PIL.ImageGrab as ImageGrab
 import numpy as np
+import matplotlib.pyplot as plt
 import main
 
 line_x = 0
@@ -35,6 +36,7 @@ def getDraw():
     image = ImageGrab.grab().crop((x+2,y+2,canvas_x-2,canvas_y-2))
     image = image.convert('L')
     image = image.resize((28,28))
+
     imageArray = np.array(image)
 
     return imageArray

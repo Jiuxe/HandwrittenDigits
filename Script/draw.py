@@ -1,4 +1,4 @@
-from tkinter import Canvas, Tk, Button, messagebox, filedialog, Scale, HORIZONTAL, ALL
+from tkinter import Canvas, Tk, Button, messagebox, filedialog, Scale, HORIZONTAL, ALL, DISABLED, NORMAL
 import PIL.ImageGrab as ImageGrab
 import numpy as np
 import matplotlib.pyplot as plt
@@ -42,9 +42,8 @@ def getDraw():
     return imageArray
 
 def trainingModel():
-    print("Comienza entrenamiento")
     main.trainingModel()
-    print("Termina entrenamiento")
+    analysisButton.config(state=NORMAL)
 
 def drawAnalysis():
     image = getDraw()
@@ -67,6 +66,7 @@ clearButton.grid(row=1, column=0, sticky='ew')
 
 analysisButton = Button(window, command=drawAnalysis, text="Analizar dibujo", bg='green')
 analysisButton.grid(row=1, column=1, sticky='ew')
+analysisButton.config(state=DISABLED)
 
 trainingButton = Button(window, command=trainingModel, text="Entrenar Modelo", bg='blue')
 trainingButton.grid(row=1, column=2, sticky='ew')

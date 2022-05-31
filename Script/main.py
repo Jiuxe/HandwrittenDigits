@@ -36,8 +36,6 @@ def evaluateOneElement(image):
             image_flattened[0][i] += 0.3
     y_predict = model.predict(image_flattened)
 
-    print(y_predict)
-
     return np.argmax(y_predict[0])
 
 
